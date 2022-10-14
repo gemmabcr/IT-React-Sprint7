@@ -21,6 +21,7 @@ function App() {
             selected: checked,
           }
           newFormData.push(updatedItem)
+          if (updatedItem.name === 'web' && !updatedItem.selected){resetWebFeatures()}
         }
         else {
           newFormData.push(currentItem)
@@ -50,7 +51,21 @@ function App() {
     })
   }
 
-  const decrement = (name) => {
+  function resetWebFeatures() {
+    setWebFormData(prevFormData => {
+      const newFormData = []
+      for (let i = 0; i < prevFormData.length; i++) {
+        const updatedInput = {
+          ...prevFormData[i],
+          quantity: 0,
+        }
+        newFormData.push(updatedInput)
+      }
+      return newFormData
+    })
+  }
+
+  function decrement (name) {
     setWebFormData(prevFormData => {
       const newFormData = []
       for (let i = 0; i < prevFormData.length; i++) {
@@ -69,7 +84,7 @@ function App() {
     })
   }
 
-  const increment = (name) => {
+  function increment (name) {
     setWebFormData(prevFormData => {
       const newFormData = []
       for (let i = 0; i < prevFormData.length; i++) {
@@ -90,8 +105,10 @@ function App() {
 
   React.useEffect(()=>{
     let total = 0;
-    formData.map(item => { if (item.selected) { total += item.price }})
-    webFormData.map(item => {
+    formData.map((item) => {
+      if (item.selected) total += item.price
+    })
+    webFormData.map((item) => {
       let amount = item.quantity * item.priceUnity
       total += amount
     })
@@ -114,7 +131,7 @@ function App() {
             {item.product}
           </label>
           {
-            item.name === 'seo' &&
+            item.name === 'web' &&
             item.selected &&
             <Panel
               data={webFormData}
