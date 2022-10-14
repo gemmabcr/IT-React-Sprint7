@@ -1,31 +1,13 @@
 import React from "react";
+import {productData, webFeatures} from "./data";
 import Panel from "./components/Panel/Panel";
 
 function App() {
   const title = '¿Qué quieres hacer?';
-  const productData = [
-    {
-      name: 'web',
-      price: 500,
-      product: 'Una pàgina web',
-      selected: false,
-    },
-    {
-      name: 'seo',
-      price: 300,
-      product: 'Una campanya SEO',
-      selected: false,
-    },
-    {
-      name: 'ads',
-      price: 200,
-      product: 'Una campanya de Google Ads',
-      selected: false,
-    },
-  ]
 
   const [formData, setFormData] = React.useState(productData);
   const [total, setTotal] = React.useState(0);
+  const [webFormData, setWebFormData] = React.useState(webFeatures)
 
   function handleChange(event) {
     const {name, checked} = event.target
@@ -48,16 +30,40 @@ function App() {
     })
   }
 
+  //web features
+  function webHandleChange(event){
+    const {name, value} = event.target
+    setWebFormData(prevFormData => {
+      const newFormData = []
+      for (let i = 0; i < prevFormData.length; i++) {
+        const currentInput = prevFormData[i]
+        if (currentInput.name === name) {
+          const updatedInput = {
+            ...currentInput,
+            quantity: parseInt(value),
+          }
+          newFormData.push(updatedInput)
+        } else {
+          newFormData.push(currentInput)
+        }
+      }
+      return newFormData
+    })
+  }
+
   React.useEffect(()=>{
     let total = 0;
     formData.map(item => {
-        if (item.selected) {
-          total += item.price
-        }
+      if (item.selected) {
+        total += item.price
       }
-    )
+    })
+    webFormData.map(item => {
+      let amount = item.quantity * item.priceUnity
+      total += amount
+    })
     setTotal(total)
-  }, formData);
+  }, [formData, webFormData]);
 
   return (
     <div className="App">
@@ -75,7 +81,7 @@ function App() {
             <label htmlFor={item.name}>
               {item.product}
             </label>
-            {item.name === 'seo' && item.selected && <Panel/>}
+            {item.name === 'seo' && item.selected && <Panel data={webFormData} onChange={webHandleChange} />}
           </div>
         )}
         <p>Preu: {total}€</p>

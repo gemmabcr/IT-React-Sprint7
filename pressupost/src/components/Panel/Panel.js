@@ -7,46 +7,11 @@ const Panel = styled.div `
   padding: 0.5rem;
 `;
 
-const PanelComponent = () => {
-  const [formData, setFormData] = React.useState([
-    {
-      label: 'Número de pàgines',
-      name: 'numPagines',
-      quantity: 1,
-      priceUnity: 30,
-    },
-    {
-      label: 'Número de idiomes',
-      name: 'numIdiomes',
-      quantity: 1,
-      priceUnity: 30,
-    }
-  ])
-
-  function handleChange(event){
-    const {name, value} = event.target
-    setFormData(prevFormData => {
-        const newFormData = []
-        for (let i = 0; i < prevFormData.length; i++) {
-          const currentInput = prevFormData[i]
-          if (currentInput.name === name) {
-            const updatedInput = {
-              ...currentInput,
-              quantity: value,
-            }
-            newFormData.push(updatedInput)
-          } else {
-            newFormData.push(currentInput)
-          }
-        }
-        return newFormData
-    })
-  }
-
+const PanelComponent = ({data, onChange}) => {
   return (
     <Panel>
       {
-        formData.map(input =>
+        data.map(input =>
           <div key={input.name}>
             <label htmlFor={input.name}>
               {input.label}
@@ -54,8 +19,7 @@ const PanelComponent = () => {
             <input
               id={input.name}
               name={input.name}
-              onChange={handleChange}
-              placeholder={input.label}
+              onChange={onChange}
               type='number'
               value={input.number}
             />
