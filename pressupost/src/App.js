@@ -53,11 +53,7 @@ function App() {
 
   React.useEffect(()=>{
     let total = 0;
-    formData.map(item => {
-      if (item.selected) {
-        total += item.price
-      }
-    })
+    formData.map(item => { if (item.selected) { total += item.price }})
     webFormData.map(item => {
       let amount = item.quantity * item.priceUnity
       total += amount
@@ -66,26 +62,24 @@ function App() {
   }, [formData, webFormData]);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h2>{title}</h2>
-        {formData.map(item=>
-          <div key={item.name}>
-            <input
-              checked={item.selected}
-              id={item.name}
-              name={item.name}
-              type='checkbox'
-              onChange={handleChange}
-            />
-            <label htmlFor={item.name}>
-              {item.product}
-            </label>
-            {item.name === 'seo' && item.selected && <Panel data={webFormData} onChange={webHandleChange} />}
-          </div>
-        )}
-        <p>Preu: {total}€</p>
-      </header>
+    <div>
+      <h2>{title}</h2>
+      {formData.map(item =>
+        <div key={item.name}>
+          <input
+            checked={item.selected}
+            id={item.name}
+            name={item.name}
+            type='checkbox'
+            onChange={handleChange}
+          />
+          <label htmlFor={item.name}>
+            {item.product}
+          </label>
+          {item.name === 'seo' && item.selected && <Panel data={webFormData} onChange={webHandleChange} />}
+        </div>
+      )}
+      <p>Preu: {total}€</p>
     </div>
   );
 }
