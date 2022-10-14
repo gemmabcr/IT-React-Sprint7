@@ -7,7 +7,7 @@ const Panel = styled.div `
   padding: 0.5rem;
 `;
 
-const PanelComponent = ({data, onChange}) => {
+const PanelComponent = ({data, onChange, decrement, increment}) => {
   return (
     <Panel>
       {
@@ -16,13 +16,15 @@ const PanelComponent = ({data, onChange}) => {
             <label htmlFor={input.name}>
               {input.label}
             </label>
+            <button disabled={input.quantity===0} onClick={() => decrement(input.name)}>-</button>
             <input
               id={input.name}
               name={input.name}
               onChange={onChange}
               type='number'
-              value={input.number}
+              value={input.quantity}
             />
+            <button onClick={() => increment(input.name)}>+</button>
           </div>
         )
       }

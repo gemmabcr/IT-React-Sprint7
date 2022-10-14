@@ -30,7 +30,6 @@ function App() {
     })
   }
 
-  //web features
   function webHandleChange(event){
     const {name, value} = event.target
     setWebFormData(prevFormData => {
@@ -41,6 +40,44 @@ function App() {
           const updatedInput = {
             ...currentInput,
             quantity: parseInt(value),
+          }
+          newFormData.push(updatedInput)
+        } else {
+          newFormData.push(currentInput)
+        }
+      }
+      return newFormData
+    })
+  }
+
+  const decrement = (name) => {
+    setWebFormData(prevFormData => {
+      const newFormData = []
+      for (let i = 0; i < prevFormData.length; i++) {
+        const currentInput = prevFormData[i]
+        if (currentInput.name === name) {
+          const updatedInput = {
+            ...currentInput,
+            quantity: parseInt(currentInput.quantity)-1,
+          }
+          newFormData.push(updatedInput)
+        } else {
+          newFormData.push(currentInput)
+        }
+      }
+      return newFormData
+    })
+  }
+
+  const increment = (name) => {
+    setWebFormData(prevFormData => {
+      const newFormData = []
+      for (let i = 0; i < prevFormData.length; i++) {
+        const currentInput = prevFormData[i]
+        if (currentInput.name === name) {
+          const updatedInput = {
+            ...currentInput,
+            quantity: parseInt(currentInput.quantity)+1,
           }
           newFormData.push(updatedInput)
         } else {
@@ -76,7 +113,16 @@ function App() {
           <label htmlFor={item.name}>
             {item.product}
           </label>
-          {item.name === 'seo' && item.selected && <Panel data={webFormData} onChange={webHandleChange} />}
+          {
+            item.name === 'seo' &&
+            item.selected &&
+            <Panel
+              data={webFormData}
+              decrement={decrement}
+              increment={increment}
+              onChange={webHandleChange}
+            />
+          }
         </div>
       )}
       <p>Preu: {total}€</p>
