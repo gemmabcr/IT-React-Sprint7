@@ -1,8 +1,9 @@
 import React from "react";
+import Panel from "./components/Panel/Panel";
 
 function App() {
   const title = '¿Qué quieres hacer?';
-  const data = [
+  const productData = [
     {
       name: 'web',
       price: 500,
@@ -23,7 +24,7 @@ function App() {
     },
   ]
 
-  const [formData, setFormData] = React.useState(data);
+  const [formData, setFormData] = React.useState(productData);
   const [total, setTotal] = React.useState(0);
 
   function handleChange(event) {
@@ -74,6 +75,7 @@ function App() {
             <label htmlFor={item.name}>
               {item.product}
             </label>
+            {item.name === 'seo' && item.selected && <Panel/>}
           </div>
         )}
         <p>Preu: {total}€</p>
