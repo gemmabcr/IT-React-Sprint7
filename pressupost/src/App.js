@@ -105,10 +105,10 @@ function App() {
 
   React.useEffect(()=>{
     let total = 0;
-    formData.map((item) => {
+    formData.forEach((item) => {
       if (item.selected) total += item.price
     })
-    webFormData.map((item) => {
+    webFormData.forEach((item) => {
       let amount = item.quantity * item.priceUnity
       total += amount
     })
