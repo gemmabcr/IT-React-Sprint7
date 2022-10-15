@@ -25,11 +25,13 @@ export const webFeatures = [
     name: 'numPagines',
     quantity: 0,
     priceUnity: 30,
+    modal: 'En aquest component indiqui el número de pàgines que vol que tingui la seva pàgina web'
   },
   {
     label: 'Número de idiomes',
     name: 'numIdiomes',
     quantity: 0,
     priceUnity: 30,
+    modal: 'En aquest component indiqui el número de idiomes que vol que tingui la seva pàgina web'
   }
 ]

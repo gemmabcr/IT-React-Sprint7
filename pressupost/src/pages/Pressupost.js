@@ -3,7 +3,7 @@ import {productData, webFeatures} from "../data";
 import Panel from "../components/Panel/Panel";
 
 function Pressupost() {
-  const title = '¿Qué quieres hacer?';
+  const title = 'Què necessites fer?';
 
   const [formData, setFormData] = React.useState(productData);
   const [total, setTotal] = React.useState(0);

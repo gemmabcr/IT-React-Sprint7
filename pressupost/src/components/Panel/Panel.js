@@ -1,7 +1,11 @@
 import React from "react";
 import {Panel, RowPanel, RowPanelTitle} from "./PanelStyled";
+import Dialog from "../Dialog/Dialog";
 
 const PanelComponent = ({data, onChange, decrement, increment}) => {
+
+  const [ state, setState ] = React.useState(false)
+
   return (
     <Panel>
       {
@@ -21,6 +25,13 @@ const PanelComponent = ({data, onChange, decrement, increment}) => {
               value={input.quantity}
             />
             <button onClick={() => increment(input.name)}>+</button>
+            <button onClick={(e) => setState(true)}>Info</button>
+
+            <Dialog
+              text={input.modal}
+              isOpen={state}
+              onClose={(e) => setState(false)}
+            />
           </RowPanel>
         )
       }
