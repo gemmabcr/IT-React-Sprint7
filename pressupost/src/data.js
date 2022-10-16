@@ -35,3 +35,5 @@ export const webFeatures = [
     modal: 'En aquest component indiqui el número de idiomes que vol que tingui la seva pàgina web'
   }
 ]
+
+export const llistatPressupostos = []
