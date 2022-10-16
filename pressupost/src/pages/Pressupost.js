@@ -2,14 +2,20 @@ import React from "react";
 import {llistatPressupostos, productData, webFeatures} from "../data";
 import Panel from "../components/Panel/Panel";
 import {RowPanel} from "../components/Panel/PanelStyled";
-import {PressupostContainer, borderBox, productListStyle} from "../components/FormPressupost/FormPressupost";
+import {PressupostContainer, BorderBox, ProductListStyle, FlexBetween} from "../components/FormPressupost/FormPressupost";
 
 function Pressupost() {
   const titleForm = 'Què necessites fer?';
   const titleList = 'Llistat de pressupostos';
 
-  const [nomPressupost, setNomPressupost] = React.useState('');
-  const [nomClient, setNomClient] = React.useState('');
+  const [nomPressupost, setNomPressupost] = React.useState(()=>{
+    if (localStorage.getItem('nomPressupost') === null) return ''
+    else return JSON.parse(localStorage.getItem('nomPressupost'))
+  });
+  const [nomClient, setNomClient] = React.useState(()=>{
+    if (localStorage.getItem('nomClient') === null) return ''
+    else return JSON.parse(localStorage.getItem('nomClient'))
+  });
   const [formData, setFormData] = React.useState(() => {
     if (localStorage.getItem('productData') === null) return productData
     else return JSON.parse(localStorage.getItem('productData'))
@@ -19,14 +25,22 @@ function Pressupost() {
     else return JSON.parse(localStorage.getItem('webFeatures'))
   });
   const [total, setTotal] = React.useState(0);
-  const [pressupostosList, setPressupostosList] = React.useState(llistatPressupostos);
+  const [pressupostosList, setPressupostosList] = React.useState(()=>{
+    if (localStorage.getItem('llistatPressupostos') === null) return llistatPressupostos
+    else return JSON.parse(localStorage.getItem('llistatPressupostos'))
+  });
 
   function handleNomPressupost(event){
-    setNomPressupost(event.target.value)
+    const {name, value} = event.target
+    setNomPressupost(value)
+    localStorage.setItem(name, JSON.stringify(value))
   }
 
   function handleNomClient(event){
-    setNomClient(event.target.value)
+    const {name, value} = event.target
+    setNomClient(value)
+    localStorage.setItem(name, JSON.stringify(value))
+
   }
 
   function handleChange(event) {
@@ -139,7 +153,8 @@ function Pressupost() {
     setTotal(total)
   }, [formData, webFormData]);
 
-  function onSubmit(){
+  function onSubmit(e){
+    e.preventDefault();
     const productesArray = []
     const productesWebArray = []
     formData.forEach(product => {
@@ -151,7 +166,7 @@ function Pressupost() {
         else productesArray.push(product)
       }
     })
-    setPressupostosList(prevState => [...prevState, {
+    const newPressupost = {
       id: pressupostosList.length,
       pressupost: nomPressupost,
       client: nomClient,
@@ -159,14 +174,19 @@ function Pressupost() {
       paginaWeb: productesWebArray,
       data: (new Date()).toLocaleDateString("en-US"),
       preuTotal: total,
-    }])
+    }
+    setPressupostosList(prevState =>{
+      const newPressupostArray = [...prevState, newPressupost]
+      localStorage.setItem('llistatPressupostos', JSON.stringify(newPressupostArray))
+      return newPressupostArray
+    })
   }
 
   return (
     <PressupostContainer>
       <div>
         <h2>{titleForm}</h2>
-        <form onSubmit={onSubmit}>
+        <form>
           <RowPanel>
             <label htmlFor='nomPressupost'>
               Nom del pressupost
@@ -221,42 +241,42 @@ function Pressupost() {
       </div>
       <div>
         <h2>{titleList}</h2>
-        {/*pressupostosList.length !== 0 && pressupostosList.map(item=>
-          <div style={borderBox} key={item.id}>
+        {pressupostosList.length !== 0 && pressupostosList.map(item=>
+          <BorderBox key={item.id}>
             <p>Nom del pressupost: {item.pressupost}</p>
             <p>Nom del client: {item.client}</p>
             <p>Productes:</p>
             {item.productes.map(product => {
               if (product.name === 'web') {
                 return (
-                  <div key={product.name} style={borderBox}>
+                  <BorderBox key={product.name}>
                     <div style={{display: 'flex', justifyContent: 'space-between'}}>
                       <p>{product.product}</p>
                       <p>{product.price}€</p>
                     </div>
                     <ul>
                       {item.paginaWeb.map(web =>
-                        (<li key={web.label} style={{display: 'flex', justifyContent: 'space-between'}}>
+                        (<FlexBetween key={web.label}>
                           <span>{web.label}: {web.quantity}</span>
                           <span>{(web.quantity)*(web.priceUnity)}€</span>
-                        </li>)
+                        </FlexBetween>)
                       )}
                     </ul>
-                  </div>
+                  </BorderBox>
                 )
               } else {
                 return (
-                  <div key={product.name} style={productListStyle}>
+                  <ProductListStyle key={product.name}>
                     <p>{product.product}</p>
                     <p>{product.price}€</p>
-                  </div>
+                  </ProductListStyle>
                 )
               }
             })}
             <p>Creat: {item.data}</p>
             <p>Total: {item.preuTotal}€</p>
-          </div>
-        )*/}
+          </BorderBox>
+        )}
       </div>
     </PressupostContainer>
   );

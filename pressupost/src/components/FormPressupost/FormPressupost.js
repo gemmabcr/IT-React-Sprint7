@@ -6,14 +6,19 @@ export const PressupostContainer = styled.div `
   gap: 1rem;
 `;
 
-export const borderBox = styled.div `
+export const BorderBox = styled.div `
   border: 1px solid dimgrey;
   padding: 0.5rem 1rem;
 `;
 
-export const productListStyle = styled.div `
+export const ProductListStyle = styled.div `
   display: flex;
   justify-content: space-between;
   border: 1px solid dimgrey;
   padding: 0.5rem 1rem
+`;
+
+export const FlexBetween = styled.div `
+  display: flex;
+  justify-content: space-between;
 `;
