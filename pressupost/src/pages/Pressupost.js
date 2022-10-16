@@ -5,9 +5,15 @@ import Panel from "../components/Panel/Panel";
 function Pressupost() {
   const title = 'Què necessites fer?';
 
-  const [formData, setFormData] = React.useState(productData);
+  const [formData, setFormData] = React.useState(() => {
+    if (localStorage.getItem('productData') === null) {return productData}
+    else { return JSON.parse(localStorage.getItem('productData'))}
+  });
+  const [webFormData, setWebFormData] = React.useState(()=>{
+    if (localStorage.getItem('webFeatures') === null) {return webFeatures}
+    else { return JSON.parse(localStorage.getItem('webFeatures'))}
+  })
   const [total, setTotal] = React.useState(0);
-  const [webFormData, setWebFormData] = React.useState(webFeatures)
 
   function handleChange(event) {
     const {name, checked} = event.target
@@ -27,6 +33,7 @@ function Pressupost() {
           newFormData.push(currentItem)
         }
       }
+      localStorage.setItem('productData', JSON.stringify(newFormData))
       return newFormData
     })
   }
@@ -47,6 +54,7 @@ function Pressupost() {
           newFormData.push(currentInput)
         }
       }
+      localStorage.setItem('webFeatures', JSON.stringify(newFormData))
       return newFormData
     })
   }
