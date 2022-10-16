@@ -102,6 +102,7 @@ function Pressupost() {
           newFormData.push(currentInput)
         }
       }
+      localStorage.setItem('webFeatures', JSON.stringify(newFormData))
       return newFormData
     })
   }
@@ -121,6 +122,7 @@ function Pressupost() {
           newFormData.push(currentInput)
         }
       }
+      localStorage.setItem('webFeatures', JSON.stringify(newFormData))
       return newFormData
     })
   }
@@ -219,7 +221,7 @@ function Pressupost() {
       </div>
       <div>
         <h2>{titleList}</h2>
-        {pressupostosList.length !== 0 && pressupostosList.map(item=>
+        {/*pressupostosList.length !== 0 && pressupostosList.map(item=>
           <div style={borderBox} key={item.id}>
             <p>Nom del pressupost: {item.pressupost}</p>
             <p>Nom del client: {item.client}</p>
@@ -254,7 +256,7 @@ function Pressupost() {
             <p>Creat: {item.data}</p>
             <p>Total: {item.preuTotal}€</p>
           </div>
-        )}
+        )*/}
       </div>
     </PressupostContainer>
   );
