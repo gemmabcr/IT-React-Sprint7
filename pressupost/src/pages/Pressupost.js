@@ -101,37 +101,25 @@ function Pressupost() {
     })
   }
 
-  function decrement (name) {
+  function handleButton (type, name) {
     setWebFormData(prevFormData => {
       const newFormData = []
       for (let i = 0; i < prevFormData.length; i++) {
         const currentInput = prevFormData[i]
         if (currentInput.name === name) {
-          const updatedInput = {
-            ...currentInput,
-            quantity: parseInt(currentInput.quantity)-1,
+          if (type==='-'){
+            const updatedInput = {
+              ...currentInput,
+              quantity: parseInt(currentInput.quantity)-1,
+            }
+            newFormData.push(updatedInput)
+          } else {
+            const updatedInput = {
+              ...currentInput,
+              quantity: parseInt(currentInput.quantity)+1,
+            }
+            newFormData.push(updatedInput)
           }
-          newFormData.push(updatedInput)
-        } else {
-          newFormData.push(currentInput)
-        }
-      }
-      localStorage.setItem('webFeatures', JSON.stringify(newFormData))
-      return newFormData
-    })
-  }
-
-  function increment (name) {
-    setWebFormData(prevFormData => {
-      const newFormData = []
-      for (let i = 0; i < prevFormData.length; i++) {
-        const currentInput = prevFormData[i]
-        if (currentInput.name === name) {
-          const updatedInput = {
-            ...currentInput,
-            quantity: parseInt(currentInput.quantity)+1,
-          }
-          newFormData.push(updatedInput)
         } else {
           newFormData.push(currentInput)
         }
@@ -228,8 +216,7 @@ function Pressupost() {
                 item.selected &&
                 <Panel
                   data={webFormData}
-                  decrement={decrement}
-                  increment={increment}
+                  handleButton={handleButton}
                   onChange={webHandleChange}
                 />
               }

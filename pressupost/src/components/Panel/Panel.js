@@ -2,7 +2,7 @@ import React from "react";
 import {Panel, RowPanel, RowPanelTitle} from "./PanelStyled";
 import Dialog from "../Dialog/Dialog";
 
-const PanelComponent = ({data, onChange, decrement, increment}) => {
+const PanelComponent = ({data, onChange, handleButton}) => {
 
   const [ state, setState ] = React.useState(false)
 
@@ -16,7 +16,7 @@ const PanelComponent = ({data, onChange, decrement, increment}) => {
                 {input.label}
               </label>
             </RowPanelTitle>
-            <button disabled={input.quantity===0} onClick={() => decrement(input.name)}>-</button>
+            <button disabled={input.quantity===0} onClick={(e) => handleButton('-', input.name)}>-</button>
             <input
               id={input.name}
               name={input.name}
@@ -24,7 +24,7 @@ const PanelComponent = ({data, onChange, decrement, increment}) => {
               type='number'
               value={input.quantity}
             />
-            <button onClick={() => increment(input.name)}>+</button>
+            <button onClick={(e) => handleButton('+', input.name)}>+</button>
             <button onClick={(e) => setState(true)}>Info</button>
 
             <Dialog
