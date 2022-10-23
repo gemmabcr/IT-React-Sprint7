@@ -4,7 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="910a9f0c-b935-41af-a23c-65c73b7035f9" name="Changes" comment="" />
+    <list default="true" id="910a9f0c-b935-41af-a23c-65c73b7035f9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pressupost/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pressupost/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pressupost/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pressupost/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pressupost/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pressupost/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pressupost/public/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pressupost/public/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pressupost/public/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pressupost/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pressupost/src/application/routes.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pressupost/src/components/Dialog/Dialog.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pressupost/src/components/Dialog/DialogStyled.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pressupost/src/components/FormPressupost/FormPressupost.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pressupost/src/components/Panel/Panel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pressupost/src/components/Panel/PanelStyled.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pressupost/src/data.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pressupost/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pressupost/src/pages/Home.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pressupost/src/pages/Pressupost.js" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,6 +63,13 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/pressupost/src/components/Dialog" />
+      <recent name="$PROJECT_DIR$/pressupost/src/pages" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -54,6 +83,11 @@
       <workItem from="1665763464105" duration="16544000" />
       <workItem from="1665829796358" duration="599000" />
       <workItem from="1665839851101" duration="1633000" />
+      <workItem from="1665841625242" duration="30000000" />
+      <workItem from="1665984723642" duration="598000" />
+      <workItem from="1666450309953" duration="1420000" />
+      <workItem from="1666511307843" duration="599000" />
+      <workItem from="1666533111264" duration="598000" />
     </task>
     <servers />
   </component>
